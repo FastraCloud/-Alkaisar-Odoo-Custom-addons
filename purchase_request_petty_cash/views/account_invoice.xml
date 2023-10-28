@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_invoice_form_inherit_delivery" model="ir.ui.view">
+            <field name="name">view.account.invoice.form.inherit.delivery</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='discount']" position="after">
+                    <field name="discount_type"/>
+                    <field name="discount_rate" attrs="{'invisible':[('discount_type', '=', 'amount')]}"/>
+                    <field name="discount_fixed" attrs="{'invisible':[('discount_type', '=', 'percentage')]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
